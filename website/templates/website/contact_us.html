@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock %}
+
+{% block body %}
+<section class="content my-5" style="background-color: #f8f9fa; padding: 40px; border-radius: 10px;">
+  <div class="container">
+    <h1 class="text-center mb-4" style="color: #343a40; font-weight: bold;">Contact Us</h1>
+    <p class="text-center lead" style="color: #495057;">
+      Get in touch with us for more information and inquiries about mortality statistics in Zambia.
+    </p>
+    
+    <!-- Contact Details Section -->
+    <div class="row my-5 text-center">
+      <div class="col-md-6 mb-4">
+        <div class="p-4 bg-light border rounded">
+          <h4 style="color: #0d6efd;">Call Us</h4>
+          <p style="color: #495057;">
+            <i class="fas fa-phone-alt" style="color: #0d6efd;"></i> 
+            <a href="tel:+260123456789" style="text-decoration: none; color: #0d6efd;"> +260-972-939-582</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="p-4 bg-light border rounded">
+          <h4 style="color: #0d6efd;">Email Us</h4>
+          <p style="color: #495057;">
+            <i class="fas fa-envelope" style="color: #0d6efd;"></i> 
+            <a href="mailto:info@mortrate.com" style="text-decoration: none; color: #0d6efd;">phirijayce@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contact Form -->
+    <div class="my-5 p-4" style="background-color: #ffffff; border-left: 5px solid #0d6efd; border-radius: 5px;">
+      <h3 class="mb-4" style="color: #343a40;">Send Us a Message</h3>
+      <form action="#" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label" style="color: #495057;">Full Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label" style="color: #495057;">Email Address</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label" style="color: #495057;">Message</label>
+          <textarea class="form-control" id="message" rows="5" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+    
+    <!-- Map or Additional Information -->
+    <div class="text-center my-5">
+      <h4 style="color: #343a40;">Visit Us</h4>
+      <p style="color: #495057;">
+        <i class="fas fa-map-marker-alt" style="color: #0d6efd;"></i> 123 Mortality Street, Lusaka, Zambia
+      </p>
+      <!-- You can integrate a map here using Google Maps or any other service -->
+    </div>
+
+  </div>
+</section>
+
+<!-- FontAwesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+{% endblock %}

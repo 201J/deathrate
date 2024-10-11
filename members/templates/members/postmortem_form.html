@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body %}
+    <h1>postmortem Form</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% endblock body %}

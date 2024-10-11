@@ -1,0 +1,35 @@
+=
+  <footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container">
+      <div class="row">
+        <!-- Footer column 1: About section -->
+        <div class="col-md-4">
+          <h5>About Us</h5>
+          <p>ZEDMORTRATE helps in counting the number of people who passed away in Zambia. We aim to provide accurate and timely information.</p>
+        </div>
+
+        <!-- Footer column 2: Quick links -->
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+              <!-- Replace # with actual Django URL template tags -->
+              <li><a href="{% url 'home' %}" class="text-white">Home</a></li>
+              <li><a href="{% url 'blog' %}" class="text-white">Blog</a></li>
+              <li><a href="{% url 'about' %}" class="text-white">About Us</a></li>
+              <li><a href="{% url 'contact_us' %}" class="text-white">Contact Us</a></li>
+          </ul>
+      </div>
+
+        <!-- Footer column 3: Contact Information -->
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p>Email: phirijayce@gmail.com</p>
+          <p>Phone: +260-972-939-582</p>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="text-center">
+        <p>&copy; 2024 ZEDMORTRATE. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>

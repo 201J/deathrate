@@ -1,0 +1,9 @@
+body {
+    background-image: url('/static/img/me.jpg');
+    background-size: cover; /* This ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
+    height: 100vh; /* Makes the body take up the full height of the viewport */
+    margin: 0; /* Resets the default margin */
+    background-color: brown;
+}
