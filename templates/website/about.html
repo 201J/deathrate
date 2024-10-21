@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}About Us{% endblock %}
+
+{% block body %}
+<section class="content my-5" style="background-color: #f8f9fa; padding: 40px; border-radius: 10px;">
+  <div class="container">
+    <h1 class="text-center mb-4" style="color: #343a40; font-weight: bold;">About ZedMORTRATE</h1>
+
+    <!-- Introduction -->
+    <p class="lead text-center" style="color: #495057;">
+      ZedMORTRATE is dedicated to providing detailed and reliable information on mortality rates and trends in Zambia. Our goal is to empower the public, policymakers, and healthcare providers with the knowledge needed to understand and respond to mortality data.
+    </p>
+
+    <!-- What We Do Section -->
+    <div class="my-5 p-4" style="background-color: #e3f2fd; border-left: 5px solid #0d6efd; border-radius: 5px;">
+      <h2 style="color: #0d6efd;">What We Do</h2>
+      <p style="color: #495057;">
+        At ZedMORTRATE, we collect, analyze, and present mortality statistics in Zambia, offering insights into health trends, causes of death, and overall mortality rates. Our platform aims to provide accurate data to:
+      </p>
+      <ul class="list-group list-group-flush" style="color: #495057;">
+        <li class="list-group-item">Help the public understand the leading causes of death in Zambia.</li>
+        <li class="list-group-item">Provide data to policymakers for informed decision-making.</li>
+        <li class="list-group-item">Support healthcare providers in identifying trends and improving patient care.</li>
+        <li class="list-group-item">Offer families and individuals information to plan and understand their health better.</li>
+      </ul>
+    </div>
+
+    <!-- How the System Works -->
+    <div class="my-5 p-4" style="background-color: #fff3cd; border-left: 5px solid #ffc107; border-radius: 5px;">
+      <h2 style="color: #fd7e14;">How ZedMORTRATE Works</h2>
+      <p style="color: #495057;">
+        Our system aggregates mortality data from various sources, including hospitals, healthcare institutions, and government reports. Here's how the platform works:
+      </p>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item" style="color: #495057;">Data Collection: ZedMORTRATE gathers data from verified sources, ensuring that the information is accurate and up-to-date.</li>
+        <li class="list-group-item" style="color: #495057;">Data Analysis: We process the data to identify patterns, trends, and causes of death in Zambia.</li>
+        <li class="list-group-item" style="color: #495057;">Data Presentation: The processed data is presented through an easy-to-understand platform, complete with graphs, statistics, and insights into mortality rates.</li>
+      </ol>
+    </div>
+
+    <!-- Why ZedMORTRATE is Important -->
+    <div class="my-5 p-4" style="background-color: #e2e3e5; border-left: 5px solid #6c757d; border-radius: 5px;">
+      <h2 style="color: #6c757d;">Why ZedMORTRATE is Important</h2>
+      <p style="color: #495057;">
+        Zambia, like many other nations, faces a range of health challenges. Understanding the underlying causes of mortality is critical in addressing these challenges. ZedMORTRATE plays a vital role by:
+      </p>
+      <ul class="list-group list-group-flush" style="color: #495057;">
+        <li class="list-group-item">Providing transparency in mortality data and trends.</li>
+        <li class="list-group-item">Helping the public make informed health decisions.</li>
+        <li class="list-group-item">Supporting public health campaigns and initiatives aimed at reducing preventable deaths.</li>
+        <li class="list-group-item">Giving policymakers the data they need to create impactful health policies.</li>
+      </ul>
+    </div>
+
+    <!-- Call to Action for Further Engagement -->
+    <div class="text-center my-5 p-4" style="background-color: #e3f2fd; border-left: 5px solid #0d6efd; border-radius: 5px;">
+      <h3 style="color: #0d6efd;">Get Involved</h3>
+      <p style="color: #495057;">
+        At ZedMORTRATE, we believe that data can help drive change. Whether you're a healthcare provider, a policymaker, or a concerned citizen, your participation in the conversation around mortality rates can make a difference.
+      </p>
+      <a href="{% url 'contact_us' %}" class="btn btn-primary">Contact Us</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

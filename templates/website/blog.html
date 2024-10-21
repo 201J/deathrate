@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+<section class="content my-5" style="background-color: #f8f9fa; padding: 40px; border-radius: 10px;">
+  <div class="container">
+    
+    <!-- Blog Introduction -->
+    <h1 class="text-center mb-4" style="color: #343a40; font-weight: bold;">Blog</h1>
+    <p class="lead text-center" style="color: #495057;">
+      Welcome to our blog, where we explore mortality trends, health topics, and offer support to those affected by loss. Our aim is to provide reliable insights and comfort to the community.
+    </p>
+
+    <!-- Encouraging Texts for Bereaving Families -->
+    <div class="my-5 p-4" style="background-color: #e3f2fd; border-left: 5px solid #0d6efd; border-radius: 5px;">
+      <h2 class="mb-3" style="color: #0d6efd;">A Message of Comfort for Bereaved Families</h2>
+      <p style="color: #495057;">
+        Losing a loved one is never easy, and we know that your heart aches. We offer our deepest condolences and hope that you find strength in the memories you shared. Lean on your family, friends, and community for support, and remember that you are not alone in this journey. May peace find you and guide you through these difficult times.
+      </p>
+      <blockquote class="blockquote mt-3" style="color: #495057;">
+        <p>"What we once enjoyed and deeply loved, we can never lose, for all that we love deeply becomes a part of us." – Helen Keller</p>
+      </blockquote>
+    </div>
+
+    <!-- FAQs Section -->
+    <div class="my-5 p-4" style="background-color: #fff3cd; border-left: 5px solid #ffc107; border-radius: 5px;">
+      <h2 class="mb-3" style="color: #fd7e14;">Frequently Asked Questions (FAQs)</h2>
+      
+      <div class="accordion" id="faqAccordion">
+        <!-- Question 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeadingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+              What should I do when a loved one passes away?
+            </button>
+          </h2>
+          <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: #495057;">
+              When a loved one passes away, contact the authorities if it happens at home. You will need to contact a medical professional to obtain a death certificate. In some cases, a postmortem may be required, which will be handled by the medical examiner or coroner.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeadingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+              How do I obtain a death certificate in Zambia?
+            </button>
+          </h2>
+          <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: #495057;">
+              To obtain a death certificate in Zambia, you need to visit the local authority’s office with the required documents, including the deceased's ID and a death notification from a healthcare provider. The certificate is usually processed within a few days.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeadingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+              What is the process for arranging a burial or cremation?
+            </button>
+          </h2>
+          <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: #495057;">
+              After obtaining the death certificate, you can contact a funeral home to discuss arrangements. In Zambia, both burial and cremation are accepted, and the choice depends on the family's wishes. The funeral home will assist in coordinating the burial or cremation process.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Blog Content -->
+    <div class="my-5">
+      <h2 style="color: #343a40;">Latest Articles</h2>
+      <p style="color: #495057;">Stay updated with the latest trends and statistics on mortality in Zambia. Here are some articles that might interest you:</p>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="color: #495057;">How Healthcare Improvements Are Impacting Mortality Rates</li>
+        <li class="list-group-item" style="color: #495057;">Understanding Causes of Death in Zambia: A Comprehensive Review</li>
+        <li class="list-group-item" style="color: #495057;">Navigating Grief: Coping Mechanisms and Support Systems</li>
+      </ul>
+    </div>
+
+    <!-- CTA for Support -->
+    <div class="text-center my-5 p-4" style="background-color: #e2e3e5; border-left: 5px solid #6c757d; border-radius: 5px;">
+      <h3 style="color: #495057;">Need Support?</h3>
+      <p style="color: #495057;">If you or someone you know needs assistance with funeral arrangements or emotional support, feel free to <a href="{% url 'contact_us' %}" style="color: #0d6efd;">contact us</a>. We are here to help you through this difficult time.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
