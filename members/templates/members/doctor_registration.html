@@ -1,15 +1,16 @@
+{% load custom_filters %}
 {% block body %}
 
 <div class="login-container" style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2;">
     <div class="login-box" style="width: 400px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
-        <h2 class="login-title" style="font-size: 24px; font-weight: bold; margin-bottom: 20px; text-align: center;">Pathologist Registration Form</h2>
+        <h2 class="login-title" style="font-size: 24px; font-weight: bold; margin-bottom: 20px; text-align: center;">Doctor Registration Form</h2>
 
         <form method="POST" class="login-form">
             {% csrf_token %}
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_name" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Name</label>
-                {{ form.name|add_class:"form-control" }}
+                <label for="{{ form.username.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Username</label>
+                {{ form.username|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
@@ -18,42 +19,37 @@
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_contact_info" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Contact Info</label>
+                <label for="{{ form.contact_info.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Contact Info</label>
                 {{ form.contact_info|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_NRC" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">NRC</label>
+                <label for="{{ form.NRC.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">NRC</label>
                 {{ form.NRC|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_email" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Email Address</label>
+                <label for="{{ form.email.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Email Address</label>
                 {{ form.email|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_password" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Password</label>
+                <label for="{{ form.password.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Password</label>
                 {{ form.password|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_specialization" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Specialization</label>
-                {{ form.specialization|add_class:"form-control" }}
-            </div>
-
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_hospital_name" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Hospital Name</label>
+                <label for="{{ form.hospital_name.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Hospital Name</label>
                 {{ form.hospital_name|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_branch" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Branch</label>
+                <label for="{{ form.branch.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Branch</label>
                 {{ form.branch|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_gender" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Gender</label>
+                <label for="{{ form.gender.id_for_label }}" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Gender</label>
                 {{ form.gender|add_class:"form-control" }}
             </div>
 

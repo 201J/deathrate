@@ -1,4 +1,30 @@
-   
+{% extends 'dash_base.html' %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block table_rows %}
+
+
+<tr>
+    <td>Deceased Table</td>
+    <td>List of all deceased individuals</td>
+    <td><a href="{% url 'deceased_table' %}" class="btn btn-primary">View Table</a></td>
+</tr>
+
+<tr>
+    <td>Next of Kin Table</td>
+    <td>Details of next of kin for deceased individuals</td>
+    <td><a href="{% url 'nextofkin_table' %}" class="btn btn-primary">View Table</a></td>
+</tr>
+
+<tr>
+    <td>Death Certificate Table</td>
+    <td>Issued death certificates</td>
+    <td><a href="{% url 'death_certificate_table' %}" class="btn btn-primary">View Table</a></td>
+</tr>
+<tr>
+
+    {% endblock %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,48 +37,113 @@
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f7;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            position: fixed;
+            padding: 20px;
+        }
+        .sidebar img {
+            border-radius: 50%;
+            width: 80px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 40px;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                height: auto;
+                width: 100%;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
 </head>
-<body style="margin: 0; font-family: Arial, sans-serif; background-color: #f0f4f7;">
+<body>
 
     <!-- Sidebar -->
-    <div style="width: 250px; height: 100vh; background-color: #2c3e50; position: fixed; padding: 20px;">
+    <div class="sidebar">
         <div style="text-align: center; color: white; margin-bottom: 30px;">
-            <img src="https://via.placeholder.com/80" alt="Profile" style="border-radius: 50%; width: 80px;">
+            <img src="https://via.placeholder.com/80" alt="Profile">
             <h2>{{ user_name }}</h2>
         </div>
 
-        <ul style="list-style-type: none; padding: 0;">
-            <li style="margin-bottom: 20px;"><a href="{% url 'dashboard_view' %}" style="color: white; text-decoration: none; font-size: 18px;">Dashboard</a></li>
-            
-            <!-- Forms Dropdown Section -->
-            <li class="nav-item dropdown" style="margin-bottom: 20px;">
-                <a class="nav-link dropdown-toggle" href="#" id="formsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; text-decoration: none; font-size: 18px;">
-                    Forms
-                </a>
+        <ul class="list-unstyled">
+            <li><a href="{% url 'dashboard_view' %}">Dashboard</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="formsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Forms</a>
                 <div class="dropdown-menu" aria-labelledby="formsDropdown">
                     <a class="dropdown-item" href="{% url 'nextofkin' %}">Next of Kin Form</a>
                     <a class="dropdown-item" href="{% url 'deceased_form' %}">Deceased Form</a>
                     <a class="dropdown-item" href="{% url 'disposal' %}">Disposal Form</a>
                     <a class="dropdown-item" href="{% url 'death_certificate_form' %}">Death Certificate Form</a>
+                    <a class="dropdown-item" href="{% url 'postmortem_form' %}">Postmortem Form</a>
+                    <a class="dropdown-item" href="{% url 'embalmer_form' %}">Embalmer Form</a>
                 </div>
             </li>
-
-            <!-- Additional Links -->
-            <li style="margin-bottom: 20px;"><a href="{% url 'Home' %}" style="color: white; text-decoration: none; font-size: 18px;">Home</a></li>
-            <li style="margin-bottom: 20px;"><a href="{% url 'blog' %}" style="color: white; text-decoration: none; font-size: 18px;">Blog</a></li>
-            <li style="margin-bottom: 20px;"><a href="{% url 'about' %}" style="color: white; text-decoration: none; font-size: 18px;">About Us</a></li>
-            <li style="margin-bottom: 20px;"><a href="{% url 'contact_us' %}" style="color: white; text-decoration: none; font-size: 18px;">Contact Us</a></li>
-            <li><a href="{% url 'logout' %}" style="color: white; text-decoration: none; font-size: 18px;">Log out</a></li>
+            <li><a href="{% url 'Home' %}">Home</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+            <li><a href="{% url 'logout' %}">Log out</a></li>
         </ul>
     </div>
 
     <!-- Main Content -->
-    <div class="container" style="margin-left: 270px; padding: 40px;">
-        <h1>Welcome back, Doctor {{ user_name }}!</h1>
+    <div class="main-content">
+        <h1>Welcome back, {{ user_name }}!</h1>
         <p style="color: #777;">Death Registration System Overview</p>
+        
+        <!-- Notification Section -->
+        <div class="notifications">
+            <h2>Notifications</h2>
+            <ul id="notification-list" class="list-group">
+                <!-- Real-time notifications will be appended here -->
+            </ul>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="statistics">
+            <h1>Statistics</h1>
+            <p>Total Burials: {{ total_burials }}</p>
+            <p>Total Cremations: {{ total_cremations }}</p>
+            <p>Total Doctors: {{ total_doctors }}</p>
+        </div>
 
         <!-- Dashboard Cards -->
-                    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Deceased Count</h5>
+                        <p class="card-text">{{ deceased_count }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Doctors Count</h5>
@@ -60,8 +151,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6">
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Burials</h5>
@@ -69,8 +159,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6">
                 <div class="card text-white bg-danger mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Cremations</h5>
@@ -80,59 +169,60 @@
             </div>
         </div>
 
-        <!-- Tables Section -->
-        <h2 style="margin-top: 40px;">Related Tables</h2>
+        <!-- Related Tables Section -->
+        <h2>Related Tables</h2>
         <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Table Name</th>
-                    <th>Description</th>
-                    <th>View</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Deceased Table</td>
-                    <td>List of all deceased individuals</td>
-                    <td><a href="{% url 'deceased_table' %}" class="btn btn-primary">View Table</a></td>
-                </tr>
-                              
-                <tr>
-                    <td>Next of Kin Table</td>
-                    <td>Details of next of kin for deceased individuals</td>
-                    <td><a href="{% url 'nextofkin_table' %}" class="btn btn-primary">View Table</a></td>
-                </tr>
-
-                <tr>
-                    <td>Disposal Table</td>
-                    <td>Details on the types of disposals and for whom</td>
-                    <td><a href="{% url 'Disposal_table' %}" class="btn btn-primary">View Table</a></td>
-                </tr>
-                
-                <tr>
-                    <td>Death Registration Table</td>
-                    <td>Details on registered deaths</td>
-                    <td><a href="{% url 'Death_registration_table' %}" class="btn btn-primary">View Table</a></td>
-                </tr>
-                
-             </tbody>
+            <!-- Table details go here -->
         </table>
 
         <!-- Charts Section -->
-        <div style="display: flex; justify-content: space-between; margin-top: 40px;">
-            <!-- Line Chart -->
-            <div style="background-color: white; padding: 20px; border-radius: 10px; width: 48%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                <h2 style="margin-bottom: 20px;">Monthly Deaths (Line Chart)</h2>
-                <canvas id="lineChart"></canvas>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <h2>Monthly Deaths (Line Chart)</h2>
+                    <canvas id="lineChart"></canvas>
+                </div>
             </div>
-
-            <!-- Bar Chart -->
-            <div style="background-color: white; padding: 20px; border-radius: 10px; width: 48%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                <h2 style="margin-bottom: 20px;">Yearly Deaths (Bar Chart)</h2>
-                <canvas id="barChart"></canvas>
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <h2>Yearly Deaths (Bar Chart)</h2>
+                    <canvas id="barChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- WebSocket Script for Real-Time Notifications -->
+    <script>
+        const socket = new WebSocket('ws://localhost:8001/ws/updates/');
+
+        socket.onopen = function(event) {
+            console.log('WebSocket is open now.');
+        };
+
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const notificationList = document.getElementById('notification-list');
+            
+            // Create a new notification item
+            const notificationItem = document.createElement('li');
+            notificationItem.classList.add('list-group-item');
+            notificationItem.textContent = `${data.message} at ${data.timestamp}`;
+            
+            // Append the new notification
+            notificationList.appendChild(notificationItem);
+
+            // Optional: Alert for immediate notification
+            alert(data.message);
+        };
+
+        socket.onclose = function(event) {
+            console.log('WebSocket is closed now.');
+        };
+
+        // Example of sending a message to the server (for testing)
+        // socket.send(JSON.stringify({ 'message': 'Hello Server!' }));
+    </script>
 
     <!-- Chart Scripts -->
     <script>
@@ -142,19 +232,18 @@
         // Bar Chart Data
         var barChartData = {{ bar_chart_data|safe }};
         
-        // Line Chart
+        // Line Chart Configuration
         var ctxLine = document.getElementById('lineChart').getContext('2d');
         var lineChart = new Chart(ctxLine, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                labels: lineChartData.labels,
                 datasets: [{
-                    label: 'Deaths per Month',
-                    data: lineChartData,
+                    label: 'Monthly Deaths',
+                    data: lineChartData.data,
                     borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderWidth: 1,
-                    fill: true
+                    borderWidth: 2,
+                    fill: false
                 }]
             },
             options: {
@@ -167,46 +256,16 @@
             }
         });
 
-        // Bar Chart
+        // Bar Chart Configuration
         var ctxBar = document.getElementById('barChart').getContext('2d');
         var barChart = new Chart(ctxBar, {
             type: 'bar',
             data: {
-                labels: ['2019', '2020', '2021', '2022', '2023'],
+                labels: barChartData.labels,
                 datasets: [{
-                    label: 'Deaths per Year',
-                    data: barChartData,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
-                    ],
+                    label: 'Yearly Deaths',
+                    data: barChartData.data,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
                     borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+               

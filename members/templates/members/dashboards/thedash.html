@@ -1,0 +1,124 @@
+<!-- Main Content -->
+<div class="main-content">
+    <h1>Welcome back, {{ user_name }}!</h1>
+    <p style="color: #777;">Death Registration System Overview</p>
+
+    <!-- Statistics Section -->
+    <div class="statistics">
+        <h1>Statistics</h1>
+        <p>Total Burials: {{ total_burials }}</p>
+        <p>Total Cremations: {{ total_cremations }}</p>
+        <p>Total Doctors: {{ total_doctors }}</p>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Deceased Count</h5>
+                    <p class="card-text">{{ deceased_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Doctors Count</h5>
+                    <p class="card-text">{{ doctor_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Burials</h5>
+                    <p class="card-text">{{ burial_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Cremations</h5>
+                    <p class="card-text">{{ cremation_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tables Section -->
+    <h2>Related Tables</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Table Name</th>
+                <th>Description</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Deceased Table</td>
+                <td>List of all deceased individuals</td>
+                <td><a href="{% url 'deceased_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Death Certificate Table</td>
+                <td>Issued death certificates</td>
+                <td><a href="{% url 'death_certificate_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Postmortem Table</td>
+                <td>Postmortem examination records</td>
+                <td><a href="{% url 'postmortem_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Next of Kin Table</td>
+                <td>Details of next of kin for deceased individuals</td>
+                <td><a href="{% url 'nextofkin_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Embalmer's Table</td>
+                <td>Embalmer's examination records</td>
+                <td><a href="{% url 'Embalmer_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Doctors Table</td>
+                <td>Details on the types of disposals and for whom</td>
+                <td><a href="{% url 'Doctor_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Pathologist Table</td>
+                <td>Details on the types of disposals and for whom</td>
+                <td><a href="{% url 'Pathologist_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Death Registration Table</td>
+                <td>Details on registered deaths</td>
+                <td><a href="{% url 'Death_registration_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+            <tr>
+                <td>Disposal Table</td>
+                <td>Details on the types of disposals and for whom</td>
+                <td><a href="{% url 'Disposal_table' %}" class="btn btn-primary">View Table</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Charts Section -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="chart-container">
+                <h2>Monthly Deaths (Line Chart)</h2>
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="chart-container">
+                <h2>Yearly Deaths (Bar Chart)</h2>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

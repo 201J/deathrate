@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Death Certificate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Death Certificate</h1>
+    <p><strong>Name:</strong> {{ certificate.deceased.full_name }}</p>
+    <p><strong>Date of Death:</strong> {{ certificate.date_of_death }}</p>
+    <p><strong>Issued By:</strong> {{ certificate.issued_by }}</p>
+    <!-- Add more fields as needed -->
+    
+    <a href="{% url 'print_death_certificate' certificate.id %}" class="btn btn-secondary">Print Certificate</a>
+    <button onclick="window.print();">Print this certificate</button>
+</body>
+</html>

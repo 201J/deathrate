@@ -1,3 +1,4 @@
+{% load custom_filters %}
 {% block body %}
 
 <div class="login-container" style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f2f2f2;">
@@ -35,11 +36,6 @@
             <div class="form-group" style="margin-bottom: 20px;">
                 <label for="id_password" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Password</label>
                 {{ form.password|add_class:"form-control" }}
-            </div>
-
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label for="id_specialization" class="form-label" style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Specialization</label>
-                {{ form.specialization|add_class:"form-control" }}
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
