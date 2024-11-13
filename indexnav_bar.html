@@ -1,0 +1,93 @@
+<!-- Sidebar -->
+<nav class="sidebar">
+    <h2 class="text-center">Death Rate Management System</h2>
+    <div class="text-center mb-4">
+        <h5 class="mt-2">Welcome, {{ user_name }}</h5>
+    </div>
+    <ul class="list-unstyled">
+        <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <!-- Tables Section -->
+        <li>
+            <nav>
+                <!-- Sidebar Menu -->
+                <ul>
+                    <!-- Tables Section -->
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#tablesMenu" aria-expanded="false">
+                            <i class="fas fa-table"></i> Tables
+                        </a>
+                        {% if user.is_superuser %}
+                        <ul id="tablesMenu" class="collapse">
+                            <li><a href="{% url 'deceased_list' %}"><i class="fas fa-user-injured"></i> Deceased List</a></li>
+                            <li><a href="{% url 'next_of_kin_list' %}"><i class="fas fa-users"></i> Next of Kin</a></li>
+                            <li><a href="{% url 'death_certificates' %}"><i class="fas fa-file-alt"></i> Death Certificates</a></li>
+                            <li><a href="{% url 'death_registrations' %}"><i class="fas fa-clipboard-list"></i> Death Registrations</a></li>
+                            <li><a href="{% url 'disposals' %}"><i class="fas fa-clipboard-list"></i> Disposals</a></li>
+                            <li><a href="{% url 'doctors_list' %}"><i class="fas fa-user-md"></i> Doctors</a></li>
+                            <li><a href="{% url 'embalmers' %}"><i class="fas fa-user-tie"></i> Embalmers</a></li>
+                            <li><a href="{% url 'postmortems' %}"><i class="fas fa-file-medical-alt"></i> Postmortems</a></li>
+                        </ul>
+                        {% endif %}
+                    </li>
+
+                    <!-- Forms Section -->
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#formsMenu" aria-expanded="false">
+                            <i class="fas fa-file-signature"></i> Forms
+                        </a>
+                        <ul id="formsMenu" class="collapse">
+                            <li><a href="{% url 'deceased_form' %}"><i class="fas fa-user-injured"></i> Deceased Form</a></li>
+                            <li><a href="{% url 'next_of_kin_form' %}"><i class="fas fa-users"></i> Next of Kin Form</a></li>
+                            <li><a href="{% url 'death_certificate_form' %}"><i class="fas fa-file-alt"></i> Death Certificate Form</a></li>
+                            <li><a href="{% url 'death_registration_form' %}"><i class="fas fa-clipboard-list"></i> Death Registration Form</a></li>
+                            <li><a href="{% url 'disposal_form' %}"><i class="fas fa-clipboard-list"></i> Disposal Form</a></li>
+                            <li><a href="{% url 'doctor_form' %}"><i class="fas fa-user-md"></i> Doctor Form</a></li>
+                            <li><a href="{% url 'embalmer_form' %}"><i class="fas fa-user-tie"></i> Embalmer Form</a></li>
+                            <li><a href="{% url 'postmortem_form' %}"><i class="fas fa-file-medical-alt"></i> Postmortem Form</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </li>
+    </ul>
+</nav>
+
+<!-- Top Navbar -->
+<nav class="top-navbar">
+    <div class="icons">
+        <a href="#"><i class="fas fa-bell"></i> <span class="badge bg-danger">5</span></a>
+        <a href="#"><i class="fas fa-envelope"></i> <span class="badge bg-danger">3</span></a>
+    </div>
+
+    <!-- Show profile and logout only if user is authenticated -->
+    {% if user.is_authenticated %}
+    <div class="user-profile">
+        <h5>Welcome, {{ doctor.name }}</h5>
+    </div>
+    <div class="user-profile">
+        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+    {% endif %}
+</nav>
+
+<!-- Custom CSS to reduce space between dropdown items -->
+<style>
+    .sidebar ul.collapse {
+        padding: 0; /* Remove padding from the ul */
+        margin: 0; /* Remove margin from the ul */
+        list-style-type: none; /* Remove bullet points from the list */
+    }
+
+    .sidebar ul.collapse li {
+        margin: 0; /* Remove margin from li */
+    }
+
+    .sidebar ul.collapse li a {
+        padding: 0; /* Set padding to 0 */
+        display: block; /* Ensure full clickable area */
+    }
+</style>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
