@@ -1,0 +1,37 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Death Registration Form</h1>
+    <form method="post" action="{% url 'death_registration_form' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.deceased.id_for_label }}">Deceased</label>
+            {{ form.deceased }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.doctor.id_for_label }}">Doctor</label>
+            {{ form.doctor }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.registration_date.id_for_label }}">Registration Date</label>
+            {{ form.registration_date }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.remarks.id_for_label }}">Remarks</label>
+            {{ form.remarks }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.disposal_permit_id.id_for_label }}">Disposal Permit ID</label>
+            {{ form.disposal_permit_id }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

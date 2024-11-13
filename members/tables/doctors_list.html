@@ -1,0 +1,50 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Doctors List</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="{% url 'doctors_list' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by any information" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>License ID</th>
+                <th>Name</th>
+                <th>Contact Info</th>
+                <th>Email</th>
+                <th>Specialization</th>
+                <th>Hospital Name</th>
+                <th>Branch</th>
+                <th>Edit</th> <!-- Edit column header -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors_list %}
+            <tr>
+                <td>{{ doctor.license_id }}</td>
+                <td>{{ doctor.name }}</td>
+                <td>{{ doctor.contact_info }}</td>
+                <td>{{ doctor.email }}</td>
+                <td>{{ doctor.specialization }}</td>
+                <td>{{ doctor.hospital_name }}</td>
+                <td>{{ doctor.branch }}</td>
+                <td>
+                    <a href="{% url 'edit_doctor' doctor.id %}" class="btn btn-sm btn-warning">Edit</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No doctors available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

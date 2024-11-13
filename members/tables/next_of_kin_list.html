@@ -1,0 +1,46 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Next of Kin List</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="{% url 'next_of_kin_list' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by any information" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>NRC</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Relationship</th>
+                <th>Deceased</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for kin in next_of_kin_list %}
+            <tr>
+                <td>{{ kin.full_name }}</td>
+                <td>{{ kin.nrc }}</td>
+                <td>{{ kin.contact }}</td>
+                <td>{{ kin.email }}</td>
+                <td>{{ kin.relationship_to_deceased }}</td>
+                <td>{{ kin.deceased.full_name }}</td>
+                <td>{{ kin.additional_notes }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No next of kin records available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

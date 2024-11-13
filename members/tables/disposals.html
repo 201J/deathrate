@@ -1,0 +1,43 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Disposals</h1>
+
+    <form method="get" action="{% url 'disposals' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by any information" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Deceased</th>
+                <th>Type</th>
+                <th>Site</th>
+                <th>Funeral Home</th>
+                <th>Date</th>
+                <th>Approved By</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for disposal in disposals %}
+            <tr>
+                <td>{{ disposal.deceased.full_name }}</td>
+                <td>{{ disposal.type_of_disposal }}</td>
+                <td>{{ disposal.site_of_disposal }}</td>
+                <td>{{ disposal.funeral_home_name }}</td>
+                <td>{{ disposal.date_of_disposal }}</td>
+                <td>{{ disposal.approved_by }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No disposal records available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

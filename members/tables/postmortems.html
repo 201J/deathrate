@@ -1,0 +1,42 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Postmortem Records</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="{% url 'postmortems' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by deceased name, date, or pathologist">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Deceased Name</th>
+                <th>Date Performed</th>
+                <th>Pathologist</th>
+                <th>Findings</th>
+                <th>Cause of Death</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for postmortem in postmortems %}
+            <tr>
+                <td>{{ postmortem.deceased.full_name }}</td>
+                <td>{{ postmortem.date_performed }}</td>
+                <td>{{ postmortem.pathologist.name }}</td>
+                <td>{{ postmortem.findings }}</td>
+                <td>{{ postmortem.cause_of_death }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No postmortem records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

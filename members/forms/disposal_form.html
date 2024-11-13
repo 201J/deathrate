@@ -1,0 +1,47 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Disposal Form</h1>
+    <form method="post" action="{% url 'disposal_form' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.deceased.id_for_label }}">Deceased</label>
+            {{ form.deceased }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.type_of_disposal.id_for_label }}">Type of Disposal</label>
+            {{ form.type_of_disposal }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.site_of_disposal.id_for_label }}">Site of Disposal</label>
+            {{ form.site_of_disposal }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.funeral_home_name.id_for_label }}">Funeral Home Name</label>
+            {{ form.funeral_home_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.date_of_disposal.id_for_label }}">Date of Disposal</label>
+            {{ form.date_of_disposal }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.additional_notes.id_for_label }}">Additional Notes</label>
+            {{ form.additional_notes }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.approved_by.id_for_label }}">Approved By</label>
+            {{ form.approved_by }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

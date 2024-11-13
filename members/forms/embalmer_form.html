@@ -1,0 +1,47 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Embalmer Form</h1>
+    <form method="post" action="{% url 'embalmer_form' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.license_id.id_for_label }}">License ID</label>
+            {{ form.license_id }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">Name</label>
+            {{ form.name }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.contact_info.id_for_label }}">Contact Information</label>
+            {{ form.contact_info }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.deceased.id_for_label }}">Deceased</label>
+            {{ form.deceased }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.embalming_details.id_for_label }}">Embalming Details</label>
+            {{ form.embalming_details }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.date_of_embalming.id_for_label }}">Date of Embalming</label>
+            {{ form.date_of_embalming }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.nrc.id_for_label }}">NRC</label>
+            {{ form.nrc }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

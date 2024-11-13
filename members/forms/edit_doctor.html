@@ -1,0 +1,28 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <form method="post">
+        {% csrf_token %}
+        <h2>Edit Doctor Information</h2>
+        
+        <!-- Render all fields in the form -->
+        {{ form.as_p }}
+
+        <h3>Change Password</h3>
+        <label for="password">New Password:</label>
+        <input type="password" name="password" id="password" placeholder="Enter new password" {% if not user.is_superuser %}{% endif %}/>
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm new password" {% if not user.is_superuser %}{% endif %}/>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

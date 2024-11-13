@@ -1,0 +1,44 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Embalmers List</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="{% url 'embalmers' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by embalmer name, license ID, or deceased name">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>License ID</th>
+                <th>Embalmer Name</th>
+                <th>Contact Information</th>
+                <th>Deceased Name</th>
+                <th>Embalming Details</th>
+                <th>Date of Embalming</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for embalmer in embalmers %}
+            <tr>
+                <td>{{ embalmer.license_id }}</td>
+                <td>{{ embalmer.name }}</td>
+                <td>{{ embalmer.contact_info }}</td>
+                <td>{{ embalmer.deceased.full_name }}</td>
+                <td>{{ embalmer.embalming_details }}</td>
+                <td>{{ embalmer.date_of_embalming }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No embalmers records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Doctor Form</h1>
+    <form method="post" action="{% url 'doctor_form' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.license_id.id_for_label }}">License ID</label>
+            {{ form.license_id }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">Name</label>
+            {{ form.name }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.contact_info.id_for_label }}">Contact Information</label>
+            {{ form.contact_info }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.specialization.id_for_label }}">Specialization</label>
+            {{ form.specialization }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.hospital_name.id_for_label }}">Hospital Name</label>
+            {{ form.hospital_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.branch.id_for_label }}">Branch</label>
+            {{ form.branch }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.nrc.id_for_label }}">NRC</label>
+            {{ form.nrc }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.gender.id_for_label }}">Gender</label>
+            {{ form.gender }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

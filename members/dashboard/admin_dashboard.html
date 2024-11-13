@@ -1,0 +1,128 @@
+{% extends "indexbase.html" %}
+{% block title %}admin_dashboard{% endblock title %}
+
+{% block body %}
+
+<!-- Main Content -->
+<div class="main-content">
+    <h1 class="mt-4">Dashboard</h1>
+    <div class="row text-center">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h3>{{ active_doctors }}</h3>
+                    <p>Active Doctors</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h3>{{ deaths_registered }}</h3>
+                    <p>Deaths Registered</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h3>{{ postmortems_count }}</h3>
+                    <p>Postmortems Requested</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h3>{{ disposals_count }}</h3>
+                    <p>Disposals Completed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Line Charts -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <canvas id="visitorStats"></canvas>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <canvas id="salesStats"></canvas>
+        </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="calendar">
+        <h5>Calendar</h5>
+        <iframe src="https://calendar.google.com/calendar/embed?src=your_zambian_holiday_calendar_id&ctz=Africa%2FLusaka" style="border: 0" width="100%" height="200" frameborder="0" scrolling="no"></iframe>
+    </div>
+</div>
+
+<!-- JS for Charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx1 = document.getElementById('visitorStats').getContext('2d');
+    const visitorStatsChart = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Deaths Registered',
+                data: [30, 40, 45, 60, 55, 65],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Death Certificates Issued',
+                data: [25, 35, 40, 50, 50, 60],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Disposal Permits Issued',
+                data: [20, 30, 35, 45, 40, 55],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('salesStats').getContext('2d');
+    const salesStatsChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['1', '6', '11', '16', '21', '26', '31'],
+            datasets: [{
+                label: 'Doctors Registered',
+                data: [10, 15, 20, 25, 30, 35, 40],
+                backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                borderColor: 'rgba(52, 152, 219, 1)',
+                borderWidth: 2
+            },
+            {
+                label: 'Pathologists Registered',
+                data: [5, 8, 12, 16, 18, 20, 22],
+                backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                borderColor: 'rgba(46, 204, 113, 1)',
+                borderWidth: 2
+            },
+            {
+                label: 'Embalmers Registered',
+                data: [3, 5, 7, 9, 10, 12, 15],
+                backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                borderColor: 'rgba(231, 76, 60, 1)',
+                borderWidth: 2
+            }]
+        },
+    });
+</script>
+
+{% endblock body %}

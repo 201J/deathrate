@@ -1,0 +1,39 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Death Certificates</h1>
+
+    <form method="get" action="{% url 'death_certificates' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by any information" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Certificate Number</th>
+                <th>Deceased</th>
+                <th>Doctor</th>
+                <th>Date Issued</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cert in death_certificates %}
+            <tr>
+                <td>{{ cert.certificate_number }}</td>
+                <td>{{ cert.deceased.full_name }}</td>
+                <td>{{ cert.doctor.name }}</td>
+                <td>{{ cert.date_issued }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No death certificates available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

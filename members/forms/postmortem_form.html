@@ -1,0 +1,32 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Postmortem Form</h1>
+    <form method="post" action="{% url 'postmortem_form' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.deceased.id_for_label }}">Deceased</label>
+            {{ form.deceased }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.pathologist.id_for_label }}">Pathologist</label>
+            {{ form.pathologist }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.report.id_for_label }}">Report</label>
+            {{ form.report }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.date_conducted.id_for_label }}">Date Conducted</label>
+            {{ form.date_conducted }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

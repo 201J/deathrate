@@ -1,0 +1,48 @@
+{% extends 'indexbase.html' %}
+
+{% block body %}
+<div class="main-content">
+    <h1 class="mt-4">Deceased List</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="{% url 'deceased_list' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by any information" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Date of Death</th>
+                <th>Cause of Death</th>
+                <th>Funeral Home</th>
+                <th>Place of Death</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for deceased in deceased_list %}
+            <tr>
+                <td>{{ deceased.full_name }}</td>
+                <td>{{ deceased.age }}</td>
+                <td>{{ deceased.gender }}</td>
+                <td>{{ deceased.date_of_birth }}</td>
+                <td>{{ deceased.date_of_death }}</td>
+                <td>{{ deceased.cause_of_death }}</td>
+                <td>{{ deceased.funeral_home_name }}</td>
+                <td>{{ deceased.place_of_death }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No deceased records available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
